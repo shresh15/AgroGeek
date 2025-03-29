@@ -1,0 +1,18 @@
+*{
+    top: 0;
+    bottom: 0;
+}
+body{
+    overflow: hidden;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+video{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
