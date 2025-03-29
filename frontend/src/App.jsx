@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Details from "./pages/Details";
 import Farmer from "./pages/Farmer";
 import Company from "./pages/Company";
+import Weather from "./pages/Weather";
 import CompanyDetails from "./pages/CompanyDetails";
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
       <Route path="/Farmer" element={<Farmer />} />
       <Route path="/Company" element={<Company />} />
       <Route path="/company/:category" element={<CompanyDetails />} />
+      <Route path="/weather" element={<Weather />} />
+
     </Routes>
   );
 }
