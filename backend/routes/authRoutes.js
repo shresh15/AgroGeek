@@ -24,14 +24,7 @@ router.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user
-    const newUser = new User({
-      name,
-      email,
-      phone,
-      address,
-      password: hashedPassword,
-      role,
-    });
+    const newUser = new User({ name, email, phone, address, password: hashedPassword, role });
     await newUser.save();
 
     res.status(201).json({ message: "✅ Registration successful!" });
@@ -48,9 +41,7 @@ router.post("/login", async (req, res) => {
 
     // Validate input
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required" });
+      return res.status(400).json({ message: "Email and password are required" });
     }
 
     // Check user

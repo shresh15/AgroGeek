@@ -107,9 +107,7 @@ router.get("/submissions", async (req, res) => {
       return res.status(404).json({ message: "No submissions found" });
     }
 
-    res
-      .status(200)
-      .json({ message: "✅ Submissions Fetched", data: submissions });
+    res.status(200).json({ message: "✅ Submissions Fetched", data: submissions });
   } catch (error) {
     console.error("❌ Error fetching submissions:", error);
     res.status(500).json({ message: "❌ Server error during data retrieval" });
