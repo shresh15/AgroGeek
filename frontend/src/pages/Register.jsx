@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import bgimg from "../assets/bg.jpg";
-
+import React from "react";
+import "../pages/output.css";
 const Register = () => {
   const navigate = useNavigate();
 
