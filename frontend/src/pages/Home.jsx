@@ -7,7 +7,7 @@ import imagefour from "/src/assets/darkened_image4.png";
 import logonew from "/src/assets/Logonew.png";
 import { useState } from "react";
 import { Link, Element } from "react-scroll";
-import "../pages/home.css";
+import "/public/home.css";
 
 const Home = () => {
   const navigate = useNavigate();
