@@ -4,10 +4,10 @@ import imageone from "/src/assets/darkened_image1.png";
 import imagetwo from "/src/assets/darkened_image2.png";
 import imagethree from "/src/assets/darkened_image3.png";
 import imagefour from "/src/assets/darkened_image4.png";
-// import logo from "/src/assets/Logonew.png";
+import logonew from "/src/assets/Logonew.png";
 import { useState } from "react";
 import { Link, Element } from "react-scroll";
-// import "./pages/home.css";
+import "../pages/home.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -154,7 +154,7 @@ const Home = () => {
                 style={{
                   width: "25vw",
                   height: "55vh",
-                  // backgroundImage: `url(${logo})`,
+                  backgroundImage: `url(${logonew})`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   y: yTransform,
@@ -183,7 +183,7 @@ const Home = () => {
                 scale,
                 width: "25vw",
                 height: "55vh",
-                // backgroundImage: `url(${logo})`,
+                backgroundImage: `url(${logonew})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
@@ -240,7 +240,7 @@ const Home = () => {
                 x,
                 width: "25vw",
                 height: "55vh",
-                // backgroundImage: `url(${logo})`,
+                backgroundImage: `url(${logonew})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
