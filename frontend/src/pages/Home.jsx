@@ -5,6 +5,7 @@ import imagetwo from "/src/assets/darkened_image2.png";
 import imagethree from "/src/assets/darkened_image3.png";
 import imagefour from "/src/assets/darkened_image4.png";
 import logonew from "/src/assets/Logonew.png";
+import collage from "/src/assets/collage.png";
 import { useState } from "react";
 import { Link, Element } from "react-scroll";
 import "/public/home.css";
@@ -183,7 +184,7 @@ const Home = () => {
                 scale,
                 width: "25vw",
                 height: "55vh",
-                backgroundImage: `url(${logonew})`,
+                backgroundImage: `url(${collage})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
               }}
