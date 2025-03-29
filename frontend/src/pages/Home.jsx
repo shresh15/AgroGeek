@@ -5,9 +5,11 @@ import imagetwo from "/src/assets/darkened_image2.png";
 import imagethree from "/src/assets/darkened_image3.png";
 import imagefour from "/src/assets/darkened_image4.png";
 import logonew from "/src/assets/Logonew.png";
-import collage from "/src/assets/collage.png";
+
 import { useState } from "react";
 import { Link, Element } from "react-scroll";
+
+import ImageSlider from "./ImageSlider";
 import "/public/home.css";
 
 const Home = () => {
@@ -104,7 +106,7 @@ const Home = () => {
                   whileHover={{ scale: 0.8 }}
                   className="p-2 rounded-lg"
                 >
-                  <Link to="fourth" smooth={true} duration={1500}>
+                  <Link to="fourth" smooth={true} duration={1000}>
                     Buyer
                   </Link>
                 </motion.li>
@@ -118,10 +120,9 @@ const Home = () => {
                 </motion.li>
                 <motion.button
                   onClick={handleNavigation}
-                  whileHover={{ scale: 0.8 }}
-                  className="p-2 mr-5 rounded-lg"
+                  className="p-2 mr-5 rounded-lg bg-blue-800"
                 >
-                  Login/Signup
+                  <motion.span whileHover={{ scale: 0.8 }}>Login</motion.span>
                 </motion.button>
               </ul>
             </div>
@@ -178,20 +179,8 @@ const Home = () => {
         }}
       >
         <div className="flex flex-row">
-          <div className="h-[100vh] w-[50vw] flex flex-col justify-center items-center">
-            <motion.div
-              style={{
-                scale,
-                width: "25vw",
-                height: "55vh",
-                backgroundImage: `url(${collage})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-              }}
-              className="w-[25vw] h-[55vh] bg-red-500 rounded-xl shadow-xl mt-[2vw] ml-[2vw]"
-            >
-              {/* <motion.img className="w-[10vw] h-[40vh]" src={logo} alt="" /> */}
-            </motion.div>
+          <div className="h-[100vh] w-[50vw] flex flex-col justify-center items-center mt-20 top-[70px]">
+            <ImageSlider />
           </div>
           <div
             id="leftone"
