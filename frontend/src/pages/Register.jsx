@@ -17,7 +17,7 @@ const Register = () => {
           onClick={() => navigate("/details?role=farmer")}
           className="px-6 py-3 bg-teal-700 text-white rounded-lg shadow-lg hover:bg-black transition"
         >
-          Register as a Farmer
+          Register as a Seller
         </button>
         <button
           onClick={() => navigate("/details?role=company")}
