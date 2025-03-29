@@ -34,32 +34,6 @@ const Home = () => {
 
   return (
     <div className="text-white">
-      {show && (
-        <div className="w-[100vw] h-[100vh] bg-white flex flex-col justify-center items-center">
-          <motion.div
-            style={{
-              width: 100,
-              height: 100,
-              boxShadow: "0px 0px 25px rgba(0, 0, 0, 0.5)",
-            }}
-            animate={{
-              scale: [0.5, 1, 1, 0.5, 0.5],
-              rotate: [0, 0, 180, 180, 0],
-              borderRadius: ["10%", "10%", "50%", "50%", "10%"],
-            }}
-            transition={{
-              duration: 2,
-              ease: easeInOut,
-              repeat: Infinity,
-              repeatDelay: 1,
-            }}
-            className="bg-black text-white w-20 h-20 flex justify-center items-center"
-          >
-            Loading ....
-          </motion.div>
-        </div>
-      )}
-
       {!show && (
         <div
           id="first"
