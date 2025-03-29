@@ -142,7 +142,7 @@ const Details = () => {
               name="name"
               placeholder="Name"
               onChange={handleChange}
-              className="border p-3 shadow-md bg-white dark:text-gray-300 dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300 mb-3"
+              className="border p-3 shadow-md bg-white dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300 mb-3"
               required
             />
             <input
@@ -150,7 +150,7 @@ const Details = () => {
               name="phone"
               placeholder="Phone"
               onChange={handleChange}
-              className="border p-3 shadow-md bg-white dark:text-gray-300 dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300 mb-3"
+              className="border p-3 shadow-md text-black dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300 mb-3"
               required
             />
             <input
@@ -158,7 +158,7 @@ const Details = () => {
               name="address"
               placeholder="Address"
               onChange={handleChange}
-              className="mb-3 border p-3 shadow-md bg-white dark:text-gray-300 dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
+              className="mb-3 border p-3 shadow-md text-black dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
               required
             />
           </>
@@ -170,7 +170,7 @@ const Details = () => {
           name="email"
           placeholder="Email"
           onChange={handleChange}
-          className="mb-3 border p-3 shadow-md bg-white dark:text-gray-300 dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
+          className="mb-3 border p-3 shadow-md text-black dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
           required
         />
         <input
@@ -178,7 +178,7 @@ const Details = () => {
           name="password"
           placeholder="Password"
           onChange={handleChange}
-          className="mb-3 border p-3 shadow-md bg-white dark:text-gray-300 dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
+          className="mb-3 border p-3 shadow-md text-black dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
           required
         />
 
@@ -192,7 +192,7 @@ const Details = () => {
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
-              className=" border p-3 shadow-md bg-white dark:text-gray-300 dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
+              className=" border p-3 shadow-md text-black dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
               required
             />
             {loading && (
@@ -202,7 +202,7 @@ const Details = () => {
               <img
                 src={formData.image}
                 alt="Profile Preview"
-                className="border p-3 shadow-md bg-white dark:text-gray-300 dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
+                className="border p-3 shadow-md text-black dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
                 required
               />
             )}
@@ -211,7 +211,7 @@ const Details = () => {
 
         <button
           type="submit"
-          className="w-full bg-green-900 text-white py-2 rounded-lg mt-4 hover:bg-green-300 hover:text-black"
+          className="w-full bg-green-900 text-black py-2 rounded-lg mt-4 hover:bg-green-300 hover:text-black"
           disabled={submitting}
         >
           {submitting ? "Submitting..." : isLogin ? "Login" : "Submit"}
