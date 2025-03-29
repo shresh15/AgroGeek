@@ -1,10 +1,11 @@
 import Register from "./pages/Register.jsx";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.jsx";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Register />} />
+      <Route path="/" element={<Home />} />
     </Routes>
   );
 };
