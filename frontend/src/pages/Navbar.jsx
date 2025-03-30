@@ -23,10 +23,10 @@ const Navbar = ({
               <img
                 src={ailogo}
                 alt="AI Guide"
-                className="h-14 w-14 cursor-pointer"
+                className="h-10 w-10 cursor-pointer"
               />
             </a>
-            <span className="absolute right-12 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-sm px-2 py-1 rounded-lg">
+            <span className="absolute right-12 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-sm px-3 py-1 rounded-lg">
               AI Guide
             </span>
           </div>
@@ -37,7 +37,7 @@ const Navbar = ({
           </a> */}
           <div className="relative group ml-10 flex items-center cursor-pointer">
             <a href="/weather">
-              <img src={weatherIcon} alt="Weather" className="h-12 w-12" />
+              <img src={weatherIcon} alt="Weather" className="h-14 w-14" />
             </a>
             <span className="absolute left-12 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-sm px-2 py-1 rounded-lg">
               Weather Report
