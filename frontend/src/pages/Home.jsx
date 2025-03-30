@@ -5,7 +5,7 @@ import imagetwo from "/src/assets/darkened_image2.png";
 import imagethree from "/src/assets/darkened_image3.png";
 import imagefour from "/src/assets/darkened_image4.png";
 import logonew from "/src/assets/Logonew.png";
-
+import { useEffect } from "react";
 import { useState } from "react";
 import { Link, Element } from "react-scroll";
 
@@ -29,7 +29,7 @@ const Home = () => {
     setTimeout(() => {
       setShow(false);
       navigate("/register");
-    }, 6000);
+    }, 0);
   };
 
   return (
@@ -37,7 +37,7 @@ const Home = () => {
       {!show && (
         <div
           id="first"
-          className="h-screen flex flex-col justify-center items-center bg-gray-100"
+          className="h-screen flex flex-col justify-center items-center bg-gray-100 flex-wrap"
           style={{
             width: "100vw",
             height: "100vh",
@@ -46,76 +46,107 @@ const Home = () => {
             backgroundSize: "cover",
           }}
         >
-          <div className="flex flex-col justify-center items-center z-50">
-            <div className="bg top-5 fixed w-[90vw] lg:h-16 rounded-lg flex items-center z-1">
-              <ul className="flex flex-row justify-between items-center w-full">
-                <motion.li
-                  whileHover={{ scale: 0.8 }}
-                  className="p-2 ml-5 rounded-lg"
-                >
-                  <Link to="first" smooth={true} duration={500}>
-                    Home
-                  </Link>
-                </motion.li>
-                <motion.li
-                  whileHover={{ scale: 0.8 }}
-                  className="p-2 rounded-lg"
-                >
-                  <Link to="second" smooth={true} duration={500}>
-                    About Us
-                  </Link>
-                </motion.li>
-                <motion.li
-                  whileHover={{ scale: 0.8 }}
-                  className="p-2 rounded-lg"
-                >
-                  <Link to="third" smooth={true} duration={500}>
-                    Seller
-                  </Link>
-                </motion.li>
-                <div>
-                  <h1 className="font-bold text-2xl">AgroGeek</h1>
-                </div>
-                <motion.li
-                  whileHover={{ scale: 0.8 }}
-                  className="p-2 rounded-lg"
-                >
-                  <Link to="fourth" smooth={true} duration={1000}>
-                    Buyer
-                  </Link>
-                </motion.li>
-                <motion.li
-                  whileHover={{ scale: 0.8 }}
-                  className="p-2 rounded-lg"
-                >
-                  <Link to="/" smooth={true} duration={500}>
-                    Services
-                  </Link>
-                </motion.li>
-                <motion.button
-                  onClick={handleNavigation}
-                  className="p-2 mr-5 rounded-lg bg-blue-800"
-                >
-                  <motion.span whileHover={{ scale: 0.8 }}>Login</motion.span>
-                </motion.button>
-              </ul>
+          <div className="lg:block">
+            <div className="flex flex-col justify-center items-center z-50">
+              <div className="bg top-5 fixed w-[60vw] lg:h-16 rounded-lg flex items-center z-1">
+                <ul className="flex flex-row justify-between items-center w-full">
+                  <motion.li
+                    whileHover={{ scale: 0.8 }}
+                    style={{ cursor: "pointer" }}
+                    className="p-2 ml-5 rounded-lg"
+                  >
+                    <Link
+                      to="first"
+                      style={{ cursor: "pointer" }}
+                      smooth={true}
+                      duration={500}
+                    >
+                      Home
+                    </Link>
+                  </motion.li>
+                  <motion.li
+                    whileHover={{ scale: 0.8 }}
+                    className="p-2 rounded-lg"
+                  >
+                    <Link
+                      to="second"
+                      style={{ cursor: "pointer" }}
+                      smooth={true}
+                      duration={500}
+                    >
+                      About Us
+                    </Link>
+                  </motion.li>
+                  {/* <motion.li
+                    whileHover={{ scale: 0.8 }}
+                    className="p-2 rounded-lg"
+                  >
+                    <Link
+                      to="third"
+                      style={{ cursor: "pointer" }}
+                      smooth={true}
+                      duration={500}
+                    >
+                      Seller
+                    </Link>
+                  </motion.li> */}
+                  <div>
+                    <h1 className="font-bold text-2xl">AgroGeek</h1>
+                  </div>
+                  {/* <motion.li
+                    whileHover={{ scale: 0.8 }}
+                    className="p-2 rounded-lg"
+                  >
+                    <Link
+                      to="fourth"
+                      style={{ cursor: "pointer" }}
+                      smooth={true}
+                      duration={1000}
+                    >
+                      Buyer
+                    </Link>
+                  </motion.li> */}
+                  <motion.li
+                    whileHover={{ scale: 0.8 }}
+                    className="p-2 rounded-lg"
+                  >
+                    <Link
+                      to="/"
+                      style={{ cursor: "pointer" }}
+                      smooth={true}
+                      duration={500}
+                    >
+                      Services
+                    </Link>
+                  </motion.li>
+                  <motion.button
+                    onClick={handleNavigation}
+                    className="p-2 mr-5 rounded-lg bg-blue-800"
+                  >
+                    <motion.span whileHover={{ scale: 0.8 }}>Login</motion.span>
+                  </motion.button>
+                </ul>
+              </div>
             </div>
           </div>
 
           {/* Parallax Effect on Heading */}
-          <div className="flex flex-row">
+          <div className="lg:flex lg:flex-row md:flex md:flex-col justify-center items-center md:justify-center md:items-center">
             <div
               id="leftone"
-              className="h-[100vh] w-[50vw] z-0 flex flex-col justify-center items-start pl-20"
+              className="lg:h-[100vh] lg:w-[50vw] md:h-[50vh] md:w-[100vw] z-0 md:flex md:flex-col md:justify-center md:items-start md:pl-20 lg:pt-0 md:pt-10 lg:text-left md:text-center"
             >
               <motion.h1
                 id="text"
-                className="text-7xl leading-loose text-left font-bold"
+                className="text-7xl leading-loose text-left font-bold lg:text-left md:text-center"
                 style={{ y: yTransform }}
               >
                 AgroGeek
               </motion.h1>
-              <motion.p style={{ y: yTransform }} className="text-xl">
+              <motion.p
+                style={{ y: yTransform }}
+                className="lg:text-xl lg:block md:hidden"
+              >
                 Agrogeek is transforming the agricultural market with a
                 cutting-edge online marketplace that directly connects farmers,
                 suppliers, and buyers. By eliminating middlemen, we ensure fair
@@ -125,17 +156,23 @@ const Home = () => {
                 both small-scale farmers and large agribusinesses.
               </motion.p>
             </div>
-            <div className="h-[100vh] w-[50vw] flex flex-col justify-center items-center">
-              <motion.div
+            <div className="lg:h-[100vh] lg:w-[50vw] md:h-[50vh] md:w-[100vw] flex flex-col justify-center items-center">
+              {/* <motion.div
                 style={{
                   width: "25vw",
                   height: "55vh",
-                  backgroundImage: `url(${logonew})`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
+                  // backgroundImage: `url(${logonew})`,
+                  // backgroundRepeat: "no-repeat",
+                  // backgroundSize: "cover",
                   y: yTransform,
                 }}
                 className="w-[25vw] h-[55vh] bg-red-500 rounded-xl shadow-xl mt-[2vw] ml-[2vw]"
+              /> */}
+              <motion.img
+                style={{ y: yTransform }}
+                src={logonew}
+                alt=""
+                className="lg:w-[25vw] lg:h-[55vh] md:w-[20vw] h-[50vh] rounded-xl"
               />
             </div>
           </div>

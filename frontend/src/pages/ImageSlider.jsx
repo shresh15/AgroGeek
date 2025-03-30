@@ -34,7 +34,7 @@ export default function ImageSlider() {
                     backgroundSize: "cover",
                     position: "absolute",
                   }}
-                  className="w-[25vw] h-[55vh] rounded-xl shadow-xl mt-[200px] ml-[2vw]"
+                  className="w-[25vw] h-[55vh] rounded-xl shadow-xl mt-[140px] ml-[2vw]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
