@@ -174,13 +174,15 @@ const Farmer = () => {
         </h1>
 
         <div className="max-w-2xl mx-auto bg-white p-6 mt-6 shadow-md rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4">Upload Leaf Images</h2>
-
+          <h2 className="text-2xl font-semibold mb-4">Upload the entities</h2>
           {/* 🔹 Category Selection Dropdown */}
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full border p-2 rounded-md mb-4"
+            className="border p-3 shadow-md bg-white dark:text-black
+             dark:border-gray-700 border-gray-300 rounded-lg w-full 
+             focus:ring-2 focus:ring-green-900 transition
+              transform hover:scale-105 duration-300 mb-3"
           >
             <option value="">Select a category</option>
             <option value="fallen_leaves">Fallen Leaves</option>
@@ -192,45 +194,47 @@ const Farmer = () => {
           {formErrors.category && (
             <p className="text-red-500 text-sm mb-4">{formErrors.category}</p>
           )}
-
           {/* 🔹 Entity Name Input */}
           <input
             type="text"
             placeholder="Entity Name"
             value={entityName}
             onChange={(e) => setEntityName(e.target.value)}
-            className="w-full border p-2 rounded-md mb-4"
+            className="border p-3 shadow-md bg-white dark:text-black
+             dark:border-gray-700 border-gray-300 rounded-lg w-full 
+             focus:ring-2 focus:ring-green-900 transition
+              transform hover:scale-105 duration-300 mb-3"
           />
           {formErrors.entityName && (
             <p className="text-red-500 text-sm mb-4">{formErrors.entityName}</p>
           )}
-
           {/* 🔹 Amount Input */}
           <input
             type="text"
             placeholder="Amount (kg, gm)"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full border p-2 rounded-md mb-4"
+            className="border p-3 shadow-md bg-white dark:text-black
+             dark:border-gray-700 border-gray-300 rounded-lg w-full 
+             focus:ring-2 focus:ring-green-900 transition
+              transform hover:scale-105 duration-300 mb-3"
           />
           {formErrors.amount && (
             <p className="text-red-500 text-sm mb-4">{formErrors.amount}</p>
           )}
-
           {/* 🔹 Price Per Amount Input */}
           <input
             type="text"
             placeholder="Price per amount"
             value={pricePerAmount}
             onChange={(e) => setPricePerAmount(e.target.value)}
-            className="w-full border p-2 rounded-md mb-4"
+            className="border p-3 shadow-md bg-white dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300 mb-3"
           />
           {formErrors.pricePerAmount && (
             <p className="text-red-500 text-sm mb-4">
               {formErrors.pricePerAmount}
             </p>
           )}
-
           {/* 🔹 Current Location Input */}
           <div className="flex flex-row items-center mb-4">
             <input
@@ -238,7 +242,7 @@ const Farmer = () => {
               placeholder="Current Location"
               value={location}
               readOnly
-              className="w-full border p-2 rounded-md mr-2"
+              className="border p-3 shadow-md bg-white dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300 mb-3"
             />
             <button
               onClick={getlocation}
@@ -251,48 +255,50 @@ const Farmer = () => {
           {formErrors.location && (
             <p className="text-red-500 text-sm mb-4">{formErrors.location}</p>
           )}
-
           {/* 🔹 Delivery Days Input */}
           <input
             type="text"
             placeholder="Number of days for delivery"
             value={deliveryDays}
             onChange={(e) => setDeliveryDays(e.target.value)}
-            className="w-full border p-2 rounded-md mb-4"
+            className="border p-3 shadow-md bg-white dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300 mb-3"
           />
           {formErrors.deliveryDays && (
             <p className="text-red-500 text-sm mb-4">
               {formErrors.deliveryDays}
             </p>
           )}
-
           {/* 🔹 Aadhar Card Number Input */}
           <input
             type="text"
             placeholder="Aadhar Card Number"
             value={aadharNumber}
             onChange={(e) => setAadharNumber(e.target.value)}
-            className="w-full border p-2 rounded-md mb-4"
+            className="border p-3 shadow-md bg-white dark:text-black
+             dark:border-gray-700 border-gray-300 rounded-lg w-full 
+             focus:ring-2 focus:ring-green-900 transition
+              transform hover:scale-105 duration-300 mb-3"
           />
           {formErrors.aadharNumber && (
             <p className="text-red-500 text-sm mb-4">
               {formErrors.aadharNumber}
             </p>
           )}
-
           {/* 🔹 Image Upload Input */}
           <input
             type="file"
             accept="image/*"
             multiple
             onChange={handleImageUpload}
-            className="w-full border p-2 rounded-md mb-4"
+            className="border p-3 shadow-md bg-white dark:text-black
+             dark:border-gray-700 border-gray-300 rounded-lg w-full 
+             focus:ring-2 focus:ring-green-900 transition
+              transform hover:scale-105 duration-300 mb-3"
             disabled={!category}
           />
           {formErrors.images && (
             <p className="text-red-500 text-sm mb-4">{formErrors.images}</p>
           )}
-
           {/* 🔹 Image Preview */}
           {images.length > 0 && (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
@@ -313,7 +319,6 @@ const Farmer = () => {
               ))}
             </div>
           )}
-
           {/* 🔹 Submit Button */}
           <button
             onClick={handleSubmit}
