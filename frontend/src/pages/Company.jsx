@@ -29,19 +29,31 @@ const Company = () => {
       className="min-h-screen flex flex-col bg-cover bg-center"
       style={{ backgroundImage: `url(${bgnew})` }}
     >
-      <h2 className="text-4xl font-bold text-black mb-10  p-4 text-center">
+      {/* <h2 className="text-4xl font-bold text-black mb-10  p-4 text-center">
         Company Dashboard
-      </h2>
-      <Navbar
-        profilePicture={profilePic}
-        showDropdown={showDropdown}
-        setShowDropdown={setShowDropdown}
-        handleLogout={handleLogout}
-      />
-      {/* 🔹 Company Dashboard Content */}
-      <div className="flex flex-col items-center justify-center flex-grow">
+      </h2> */}
+      <div className="flex flex-col justify-center items-center">
+        <Navbar
+          profilePicture={profilePic}
+          showDropdown={showDropdown}
+          setShowDropdown={setShowDropdown}
+          handleLogout={handleLogout}
+        />
+        <div className="w-[90vw] h-[20vh] flex flex-col justify-center items-center">
+          <label for="options" className="text-lg mb-5">
+            Please Select The Category Of Purchase
+          </label>
+          <select id="options">
+            <option value="select">Select Option</option>
+            <option value="fallenleaves">Fallen Leaves</option>
+            <option value="ayurvedic">Ayurvedic Plants</option>
+            <option value="wood">Woods</option>
+          </select>
+        </div>
+        {/* 🔹 Company Dashboard Content */}
+        {/* <div className="flex flex-col items-center justify-center flex-grow">
         {/* 🔹 Category Selection Boxes */}
-        <div className="flex flex-wrap justify-center gap-8">
+        {/* <div className="flex flex-wrap justify-center gap-8">
           {["fallen_leaves", "wood", "medicinal_plants"].map((category) => (
             <div
               key={category}
@@ -54,6 +66,7 @@ const Company = () => {
             </div>
           ))}
         </div>
+      </div> */}
       </div>
     </div>
   );
