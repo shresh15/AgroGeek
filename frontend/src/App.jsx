@@ -16,7 +16,6 @@ function App() {
       <Route path="/Company" element={<Company />} />
       <Route path="/company/:category" element={<CompanyDetails />} />
       <Route path="/weather" element={<Weather />} />
-
     </Routes>
   );
 }
