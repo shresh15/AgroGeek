@@ -84,7 +84,7 @@ const Details = () => {
       if (isLogin) {
         // Login API Call
         const loginResponse = await axios.post(
-          "http://localhost:8000/api/auth/login",
+          `${import.meta.env.VITE_ENV_BACKEND_URL}/api/auth/login`,
           formData
         );
         console.log("Login Response:", loginResponse.data);
@@ -93,7 +93,7 @@ const Details = () => {
       } else {
         // Signup API Call
         const signupResponse = await axios.post(
-          "http://localhost:8000/api/auth/register",
+          `${import.meta.env.VITE_ENV_BACKEND_URL}/api/auth/register`,
           formData
         );
         console.log("Signup Response:", signupResponse.data);
