@@ -19,12 +19,16 @@ const __dirname = path.dirname(__filename);
 // ✅ Apply Middleware
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json()); // Parse JSON body
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
 app.use(express.urlencoded({ extended: true })); // Parse form data
 
 // ✅ Ensure "uploads" directory exists
 const uploadDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
+  fs.mkdirSync(uploadDir);
 }
 app.use("/uploads", express.static(uploadDir)); // Serve uploaded images
 
@@ -33,37 +37,37 @@ app.use("/api/auth", authRoutes);
 
 // ✅ Connect to MongoDB
 mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => console.log("✅ MongoDB Connected"))
-    .catch((err) => console.error("❌ MongoDB Connection Failed:", err));
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ MongoDB Connection Failed:", err));
 
 mongoose.connection.on("error", (err) => {
-    console.error("❌ MongoDB connection error:", err);
+  console.error("❌ MongoDB connection error:", err);
 });
 
 // ✅ Setup Multer for Image Uploads
 const fileFilter = (req, file, cb) => {
-    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-    if (allowedTypes.includes(file.mimetype)) {
-        cb(null, true);
-    } else {
-        cb(
-            new Error("Invalid file type. Only JPEG, PNG, and GIF are allowed."),
-            false
-        );
-    }
+  const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(
+      new Error("Invalid file type. Only JPEG, PNG, and GIF are allowed."),
+      false
+    );
+  }
 };
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, uploadDir),
-    filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
+  destination: (req, file, cb) => cb(null, uploadDir),
+  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
 const upload = multer({ storage, fileFilter });
 
 app.use("/api/farmer", farmerRouter);
 app.use((err, req, res, next) => {
-    console.error("❌ Error:", err);
-    res.status(500).json({ message: "❌ Server error." });
+  console.error("❌ Error:", err);
+  res.status(500).json({ message: "❌ Server error." });
 });
 
 // ✅ Start Server
