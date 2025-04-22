@@ -17,7 +17,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ✅ Apply Middleware
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({ origin: process.env.WHITELISTED_FRONTEND_URL, credentials: true })
+);
 app.use(express.json()); // Parse JSON body
 app.get("/", (req, res) => {
   res.send("hello world");
