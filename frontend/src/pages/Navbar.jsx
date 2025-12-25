@@ -69,12 +69,12 @@ const Navbar = ({
           {/* 🔹 Logout Dropdown */}
           {showDropdown && (
             <div className="absolute right-0 mt-10 w-32 bg-transparent shadow-md rounded-md">
-              <button
+              {/* <button
                 // onClick={handleLogout}
                 className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
               >
                 Responses
-              </button>
+              </button> */}
               <button
                 onClick={handleLogout}
                 className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
