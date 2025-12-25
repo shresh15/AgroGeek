@@ -99,7 +99,7 @@ const Company = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
             <option value="select">Select Option</option>
-            <option value="fallenleaves">Fallen Leaves</option>
+            <option value="fallen_leaves">Fallen Leaves</option>
             <option value="ayurvedic">Ayurvedic Plants</option>
             <option value="wood">Woods</option>
           </select>
