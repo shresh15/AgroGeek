@@ -41,6 +41,19 @@ const dataSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    imagePaths: {
+      type: [String],
+      default: [],
+    },
+    companyInterests: [
+      {
+        companyName: String,
+        contact: String,
+        email: String,
+        location: String,
+        notifiedAt: { type: Date, default: Date.now },
+      },
+    ],
   },
   { timestamps: true }
 );

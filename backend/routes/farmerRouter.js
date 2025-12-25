@@ -114,4 +114,59 @@ router.get("/submissions", async (req, res) => {
   }
 });
 
+// 📌 Route to notify farmer about company interest
+router.post("/notify-farmer", async (req, res) => {
+  try {
+    const { submissionId, companyDetails } = req.body;
+
+    // Validate inputs
+    if (!submissionId || !companyDetails) {
+      return res
+        .status(400)
+        .json({ message: "submissionId and companyDetails are required" });
+    }
+
+    // Validate companyDetails
+    if (
+      !companyDetails.companyName ||
+      !companyDetails.contact ||
+      !companyDetails.email ||
+      !companyDetails.location
+    ) {
+      return res.status(400).json({
+        message: "All company details (name, contact, email, location) are required",
+      });
+    }
+
+    // Find the submission by ID
+    const submission = await Data.findById(submissionId);
+
+    if (!submission) {
+      return res.status(404).json({ message: "Submission not found" });
+    }
+
+    // Add company interest to the submission
+    submission.companyInterests = submission.companyInterests || [];
+    submission.companyInterests.push({
+      companyName: companyDetails.companyName,
+      contact: companyDetails.contact,
+      email: companyDetails.email,
+      location: companyDetails.location,
+      notifiedAt: new Date(),
+    });
+
+    // Save the updated submission
+    await submission.save();
+
+    res.status(200).json({
+      success: true,
+      message: "✅ Farmer notified successfully",
+      data: submission,
+    });
+  } catch (error) {
+    console.error("❌ Error notifying farmer:", error);
+    res.status(500).json({ message: "❌ Server error during notification" });
+  }
+});
+
 export default router;

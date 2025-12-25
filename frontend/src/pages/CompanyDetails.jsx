@@ -111,12 +111,12 @@ const CompanyDetails = () => {
             </p>
 
             {/* Interest Button */}
-            <button
+            {/* <button
               onClick={() => handleInterestClick(submission._id)}
               className="mt-4 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
             >
               Yes, I am Interested
-            </button>
+            </button> */}
           </div>
         ))}
       </div>
