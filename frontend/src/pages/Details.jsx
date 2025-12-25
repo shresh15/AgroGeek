@@ -130,9 +130,10 @@ const Details = () => {
             }`}
       </h1>
 
+      <div className="max-h-[90vh] overflow-y-auto w-96">
       <form
         onSubmit={handleSubmit}
-        className="divback p-7 rounded-xl shadow-md w-96 border border-black mt-5"
+        className="divback p-7 rounded-xl shadow-md w-full border border-black mt-5"
       >
         {/* Signup Fields */}
         {!isLogin && (
@@ -202,7 +203,7 @@ const Details = () => {
               <img
                 src={formData.image}
                 alt="Profile Preview"
-                className="border p-3 shadow-md text-black dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
+                className="border p-3 shadow-md text-black dark:text-black dark:border-gray-700 border-gray-300 rounded-lg w-full max-h-48 object-contain focus:ring-2 focus:ring-green-900 transition transform hover:scale-105 duration-300"
                 required
               />
             )}
@@ -217,6 +218,7 @@ const Details = () => {
           {submitting ? "Submitting..." : isLogin ? "Login" : "Submit"}
         </button>
       </form>
+      </div>
 
       {/* Toggle Signup/Login */}
       <p className="mt-4 text-black">
