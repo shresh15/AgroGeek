@@ -71,15 +71,15 @@ const Navbar = ({ profilePicture, showDropdown, setShowDropdown }) => {
           {/* Dropdown */}
           {showDropdown && (
             <div className="absolute right-0 mt-10 w-36 bg-white shadow-md rounded-md">
-              {/* <button
+              <button
                 className="w-full text-left px-4 py-2 hover:bg-gray-100"
                 onClick={() => navigate("/responses")}
               >
                 Responses
-              </button> */}
+              </button>
               <button
                 onClick={handleLogout}
-                className="w-full text-left px-4 py-2 text-black hover:bg-gray-100"
+                className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
               >
                 Logout
               </button>
