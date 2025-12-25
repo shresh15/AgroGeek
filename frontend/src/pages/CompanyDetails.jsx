@@ -17,7 +17,7 @@ const CompanyDetails = () => {
     setError("");
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/farmer/submissions?category=${category}`
+        `https://agro-geek.onrender.com/api/farmer/submissions?category=${category}`
       );
 
       if (response.data && Array.isArray(response.data.data)) {
@@ -45,7 +45,7 @@ const CompanyDetails = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/farmer/notify-farmer",
+        "https://agro-geek.onrender.com/api/farmer/notify-farmer",
         {
           submissionId,
           companyDetails,
@@ -85,7 +85,7 @@ const CompanyDetails = () => {
             {/* Display Image */}
             {submission.imagePaths && submission.imagePaths.length > 0 && (
               <img
-                src={`http://localhost:8000/${submission.imagePaths[0]}`}
+                src={`https://agro-geek.onrender.com/${submission.imagePaths[0]}`}
                 alt={submission.entityName}
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />

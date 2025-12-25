@@ -124,7 +124,7 @@ const Farmer = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/farmer/submit",
+        "https://agro-geek.onrender.com/api/farmer/submit",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
