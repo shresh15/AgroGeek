@@ -2,160 +2,158 @@ import React, { useState, useEffect } from "react";
 import { WiHumidity, WiStrongWind } from "react-icons/wi";
 import BgVideo from "./BgVideo";
 
-const API_KEY = "bd5e378503939ddaee76f12ad7a97608"; // Replace with your API key
+const API_KEY = "bd5e378503939ddaee76f12ad7a97608"; // your key
 
 const Weather = () => {
-    const [weatherData, setWeatherData] = useState(null);
-    const [weeklyForecast, setWeeklyForecast] = useState([]);
-    const [city, setCity] = useState("New York"); // Default city
+  const [weatherData, setWeatherData] = useState(null);
+  const [forecast, setForecast] = useState([]);
+  const [city, setCity] = useState("New York");
+  const [error, setError] = useState("");
 
-    // Function to map weather conditions to emojis
-    const getWeatherEmoji = (condition) => {
-        if (condition.includes("clear")) return "☀️";
-        if (condition.includes("few clouds")) return "🌤️";
-        if (condition.includes("clouds")) return "☁️";
-        if (condition.includes("rain")) return "🌧️";
-        if (condition.includes("thunderstorm")) return "⛈️";
-        if (condition.includes("snow")) return "❄️";
-        if (condition.includes("mist") || condition.includes("fog")) return "🌫️";
-        return "❓"; // Default emoji for unknown weather
-    };
+  const getWeatherEmoji = (desc) => {
+    const d = desc.toLowerCase();
+    if (d.includes("clear")) return "☀️";
+    if (d.includes("cloud")) return "☁️";
+    if (d.includes("rain")) return "🌧️";
+    if (d.includes("thunder")) return "⛈️";
+    if (d.includes("snow")) return "❄️";
+    if (d.includes("mist") || d.includes("fog")) return "🌫️";
+    return "🌍";
+  };
 
-    // Fetch Weather Data by City Name
-    const fetchWeather = async (searchCity = city) => {
+  const fetchWeather = async (searchCity = city) => {
+    try {
+      setError("");
+
+      // 🌤 Current Weather
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${API_KEY}`
+      );
+      const data = await res.json();
+      if (data.cod !== 200) throw new Error(data.message);
+      setWeatherData(data);
+
+      // 📅 5-day Forecast (FREE API)
+      const forecastRes = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=${API_KEY}`
+      );
+      const forecastData = await forecastRes.json();
+
+      // Pick 1 forecast per day (every 24 hrs)
+      const daily = forecastData.list.filter((_, i) => i % 8 === 0);
+      setForecast(daily);
+    } catch (err) {
+      setError(err.message || "Failed to fetch weather");
+    }
+  };
+
+  const fetchWeatherByLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const { latitude, longitude } = pos.coords;
+
         try {
-            const res = await fetch(
-                `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${API_KEY}`
-            );
-            const data = await res.json();
-            setWeatherData(data);
+          const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+          );
+          const data = await res.json();
+          setWeatherData(data);
+          setCity(data.name);
 
-            // Fetch 7-Day Forecast
-            const forecastRes = await fetch(
-                `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${data.coord.lat}&lon=${data.coord.lon}&cnt=7&units=metric&appid=${API_KEY}`
-            );
-            const forecastData = await forecastRes.json();
-            setWeeklyForecast(forecastData.list);
-        } catch (error) {
-            console.error("Error fetching weather data", error);
+          const forecastRes = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+          );
+          const forecastData = await forecastRes.json();
+          setForecast(forecastData.list.filter((_, i) => i % 8 === 0));
+        } catch (err) {
+          setError("Unable to fetch weather");
         }
-    };
-
-    // Fetch Weather Data by Current Location
-    const fetchWeatherByLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                async (position) => {
-                    const { latitude, longitude } = position.coords;
-                    try {
-                        const res = await fetch(
-                            `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
-                        );
-                        const data = await res.json();
-                        setWeatherData(data);
-                        setCity(data.name);
-
-                        // Fetch 7-Day Forecast
-                        const forecastRes = await fetch(
-                            `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&cnt=7&units=metric&appid=${API_KEY}`
-                        );
-                        const forecastData = await forecastRes.json();
-                        setWeeklyForecast(forecastData.list);
-                    } catch (error) {
-                        console.error("Error fetching weather data", error);
-                    }
-                },
-                (error) => {
-                    console.error("Geolocation error:", error);
-                    alert("Unable to access location. Please allow location access.");
-                }
-            );
-        } else {
-            alert("Geolocation is not supported by your browser.");
-        }
-    };
-
-    useEffect(() => {
-        fetchWeather();
-    }, []);
-
-    return (
-        <div
-            className="flex flex-col items-center bg-gray-100 min-h-screen p-4"
-            style={{}}
-        >
-            <BgVideo />
-            <div
-                style={{ position: "relative" }}
-                className="flex flex-col justify-center items-center top-20"
-            >
-                <h1 className="text-2xl font-semibold mb-4">Weather Forecast</h1>
-
-                {/* Search Bar & Current Location Button */}
-                <div className="mb-4 flex space-x-2">
-                    <input
-                        type="text"
-                        className="border p-2 rounded"
-                        placeholder="Enter City Name"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                    />
-                    <button
-                        onClick={() => fetchWeather(city)}
-                        className="bg-blue-500 text-white px-4 py-2 rounded"
-                    >
-                        Search
-                    </button>
-                    <button
-                        onClick={fetchWeatherByLocation}
-                        className="bg-green-500 text-white px-4 py-2 rounded"
-                    >
-                        📍 Use Current Location
-                    </button>
-                </div>
-
-                {/* Current Weather */}
-                {weatherData && (
-                    <div className="bg-white p-4 rounded shadow-md w-80 text-center">
-                        <h2 className="text-xl font-semibold">{weatherData.name}</h2>
-                        <p className="text-gray-600">
-                            {weatherData.weather[0].description}
-                        </p>
-                        <p className="text-3xl font-bold">{weatherData.main.temp}°C</p>
-                        <div className="flex justify-center mt-2">
-                            <WiHumidity className="text-blue-500 text-2xl mr-2" />
-                            <p>Humidity: {weatherData.main.humidity}%</p>
-                        </div>
-                        <div className="flex justify-center mt-2">
-                            <WiStrongWind className="text-gray-500 text-2xl mr-2" />
-                            <p>Wind: {weatherData.wind.speed} m/s</p>
-                        </div>
-                    </div>
-                )}
-
-                {/* Weekly Forecast */}
-                <h2 className="text-xl font-semibold mt-6">Weekly Forecast</h2>
-                <div className="flex overflow-x-scroll mt-4 space-x-4 p-4">
-                    {weeklyForecast.map((day, index) => (
-                        <div
-                            key={index}
-                            className="bg-white p-3 rounded shadow-md min-w-[120px] text-center"
-                        >
-                            <p className="font-semibold">
-                                {new Date(day.dt * 1000).toLocaleDateString()}
-                            </p>
-                            <p className="text-2xl">
-                                {getWeatherEmoji(day.weather[0].description)}
-                            </p>{" "}
-                            {/* ✅ Emoji */}
-                            <p className="text-lg font-bold">{Math.round(day.temp.day)}°C</p>
-                            <p className="text-gray-600">{day.weather[0].description}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
+      },
+      () => alert("Location access denied")
     );
+  };
+
+  useEffect(() => {
+    fetchWeather();
+  }, []);
+
+  return (
+    <div className="relative min-h-screen">
+      <BgVideo />
+
+      {/* CONTENT */}
+      <div className="relative z-10 flex flex-col items-center p-6 text-white">
+        <h1 className="text-3xl font-bold mb-4">Weather Forecast</h1>
+
+        {/* Search */}
+        <div className="flex gap-2 mb-6">
+          <input
+            className="p-2 rounded text-black"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Enter city"
+          />
+          <button
+            onClick={() => fetchWeather(city)}
+            className="bg-blue-600 px-4 py-2 rounded"
+          >
+            Search
+          </button>
+          <button
+            onClick={fetchWeatherByLocation}
+            className="bg-green-600 px-4 py-2 rounded"
+          >
+            📍 Location
+          </button>
+        </div>
+
+        {error && <p className="text-red-400">{error}</p>}
+
+        {/* Current Weather */}
+        {weatherData && (
+          <div className="bg-black/50 p-6 rounded-lg text-center w-80">
+            <h2 className="text-xl font-semibold">{weatherData.name}</h2>
+            <p className="text-lg">
+              {getWeatherEmoji(weatherData.weather[0].description)}{" "}
+              {weatherData.weather[0].description}
+            </p>
+            <p className="text-4xl font-bold">
+              {Math.round(weatherData.main.temp)}°C
+            </p>
+
+            <div className="flex justify-between mt-4">
+              <div className="flex items-center">
+                <WiHumidity size={28} />
+                <span>{weatherData.main.humidity}%</span>
+              </div>
+              <div className="flex items-center">
+                <WiStrongWind size={28} />
+                <span>{weatherData.wind.speed} m/s</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Forecast */}
+        <h2 className="text-2xl mt-8 mb-4">Next Days</h2>
+        <div className="flex gap-4 overflow-x-auto">
+          {forecast.map((day, i) => (
+            <div
+              key={i}
+              className="bg-black/50 p-4 rounded-lg min-w-[120px] text-center"
+            >
+              <p>{new Date(day.dt * 1000).toLocaleDateString()}</p>
+              <p className="text-2xl">
+                {getWeatherEmoji(day.weather[0].description)}
+              </p>
+              <p className="font-bold">{Math.round(day.main.temp)}°C</p>
+              <p className="text-sm">{day.weather[0].description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Weather;
